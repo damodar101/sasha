@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Little Story ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="glow glow-one"></div>
+<div class="glow glow-two"></div>
+
+<!-- Background Music -->
+<audio id="backgroundMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<main class="app">
+
+<!-- =========================================
+WELCOME SCREEN
+========================================== -->
+
+<section class="screen active" id="welcomeScreen">
+
+<div class="heart-icon">♡</div>
+
+<p class="small-text">
+BEFORE WE BEGIN...
+</p>
+
+<h1>
+Do you remember<br>
+when we first met?
+</h1>
+
+<p class="description">
+Let's see if you remember the date
+when our little story began. ❤️
+</p>
+
+<div class="date-box first-meet-box">
+
+<label for="firstMeetDate">
+WHEN DID WE FIRST MEET?
+</label>
+
+<div class="custom-date-wrapper">
+
+<input
+type="text"
+id="firstMeetDate"
+class="custom-date-input"
+placeholder="Choose a date"
+autocomplete="off"
+readonly
+>
+
+<button
+type="button"
+class="calendar-button"
+onclick="openCalendar('firstMeetDate')"
+aria-label="Open calendar">
+▣
+</button>
+
+</div>
+
+</div>
+
+<!-- CORRECTED BUTTON -->
+<button
+type="button"
+class="primary-btn"
+onclick="checkFirstMeetDate()">
+
+Let's see
+
+<span>→</span>
+
+</button>
+
+<p
+class="date-result"
+id="dateResult">
+</p>
+
+</section>
+
+
+<!-- =========================================
+MEMORY SCREEN
+========================================== -->
+
+<section
+class="screen"
+id="memoryScreen">
+
+<button
+class="back-btn"
+onclick="goBack('welcomeScreen')">
+←
+</button>
+
+<p class="small-text">
+OUR LITTLE STORY
+</p>
+
+<h2>
+And somehow...
+</h2>
+
+<p class="description">
+From two people meeting for the first time
+to all the little memories we've made since then...
+</p>
+
+<div class="memory-quote">
+
+<span>“</span>
+
+Some moments become memories.
+Some memories become everything.
+
+<span>”</span>
+
+</div>
+
+<!-- RELATIONSHIP COUNTER -->
+
+<div class="relationship-counter">
+
+<p class="counter-label">
+OUR TIME TOGETHER
+</p>
+
+<div
+class="counter-value"
+id="relationshipCounter">
+0 DAYS • 00 HOURS • 00 MINUTES • 00 SECONDS
+</div>
+
+<p
+class="counter-since"
+id="counterSince">
+Since June 22, 2026
+</p>
+
+</div>
+
+<button
+class="primary-btn"
+onclick="goToDateQuestion()">
+
+One more thing
+
+<span>→</span>
+
+</button>
+
+</section>
+
+
+<!-- =========================================
+DATE QUESTION SCREEN
+========================================== -->
+
+<section
+class="screen"
+id="dateQuestionScreen">
+
+<div class="heart-icon">
+♥
+</div>
+
+<p class="small-text">
+A NEW MEMORY
+</p>
+
+<h1>
+So...
+</h1>
+
+<p class="question-text">
+Will you make<br>
+another memory<br>
+with me?
+</p>
+
+<p class="description">
+This time, you get to choose how our next
+little adventure begins. ❤️
+</p>
+
+<button
+class="primary-btn"
+onclick="goToActivities()">
+
+Choose our date
+
+<span>→</span>
+
+</button>
+
+</section>
+
+
+<!-- =========================================
+ACTIVITY SCREEN
+========================================== -->
+
+<section
+class="screen"
+id="activityScreen">
+
+<button
+class="back-btn"
+onclick="goBack('dateQuestionScreen')">
+←
+</button>
+
+<p class="small-text">
+FIRST THINGS FIRST
+</p>
+
+<h2>
+What kind of<br>
+date should we have?
+</h2>
+
+<div class="activity-grid">
+
+<button
+class="activity-card"
+onclick="selectActivity(this, 'Movie Date')">
+
+<span class="activity-icon">
+🎬
+</span>
+
+<span>
+Movie
+</span>
+
+</button>
+
+<button
+class="activity-card"
+onclick="selectActivity(this, 'Walk Date')">
+
+<span class="activity-icon">
+🚶
+</span>
+
+<span>
+Walk
+</span>
+
+</button>
+
+<button
+class="activity-card"
+onclick="selectActivity(this, 'Food Date')">
+
+<span class="activity-icon">
+🍕
+</span>
+
+<span>
+Food
+</span>
+
+</button>
+
+<button
+class="activity-card"
+onclick="selectActivity(this, 'Coffee Date')">
+
+<span class="activity-icon">
+☕
+</span>
+
+<span>
+Coffee
+</span>
+
+</button>
+
+<button
+class="activity-card"
+onclick="selectActivity(this, 'Sunset Date')">
+
+<span class="activity-icon">
+🌅
+</span>
+
+<span>
+Sunset
+</span>
+
+</button>
+
+<button
+class="activity-card"
+onclick="selectActivity(this, 'Game Date')">
+
+<span class="activity-icon">
+🎮
+</span>
+
+<span>
+Game
+</span>
+
+</button>
+
+</div>
+
+<button
+class="primary-btn continue-btn"
+id="activityContinue"
+onclick="goToDate()"
+disabled>
+
+Continue
+
+<span>→</span>
+
+</button>
+
+</section>
+
+
+<!-- =========================================
+DATE SCREEN
+========================================== -->
+
+<section
+class="screen"
+id="dateScreen">
+
+<button
+class="back-btn"
+onclick="goBack('activityScreen')">
+←
+</button>
+
+<p class="small-text">
+PICK OUR DAY
+</p>
+
+<h2>
+When should<br>
+we meet?
+</h2>
+
+<p class="date-info">
+You can choose any day within the next
+6 months. ❤️
+</p>
+
+<div class="date-box">
+
+<label for="datePicker">
+SELECT A DATE
+</label>
+
+<div class="custom-date-wrapper">
+
+<input
+type="text"
+id="datePicker"
+class="custom-date-input"
+placeholder="Choose a date"
+autocomplete="off"
+readonly
+>
+
+<button
+type="button"
+class="calendar-button"
+onclick="openCalendar('datePicker')"
+aria-label="Open calendar">
+▣
+</button>
+
+</div>
+
+</div>
+
+<p
+class="range-text"
+id="rangeText">
+</p>
+
+<button
+class="primary-btn continue-btn"
+onclick="goToTime()">
+
+Continue
+
+<span>→</span>
+
+</button>
+
+</section>
+
+
+<!-- =========================================
+TIME SCREEN
+========================================== -->
+
+<section
+class="screen"
+id="timeScreen">
+
+<button
+class="back-btn"
+onclick="goBack('dateScreen')">
+←
+</button>
+
+<p class="small-text">
+ONE LAST THING
+</p>
+
+<h2>
+What time<br>
+works for you?
+</h2>
+
+<p class="time-info">
+Pick the perfect time for our date. ❤️
+</p>
+
+<!-- ALARM STYLE CLOCK -->
+
+<div class="alarm-picker">
+
+<div class="alarm-display">
+
+<div class="alarm-time">
+<span id="clockHour">06</span>
+<span class="clock-colon">:</span>
+<span id="clockMinute">00</span>
+</div>
+
+<div class="ampm-switch">
+
+<button
+type="button"
+id="amButton"
+onclick="selectAMPM('AM')">
+AM
+</button>
+
+<button
+type="button"
+id="pmButton"
+class="active"
+onclick="selectAMPM('PM')">
+PM
+</button>
+
+</div>
+
+</div>
+
+
+<div class="clock-mode">
+
+<button
+type="button"
+id="hourModeButton"
+class="active"
+onclick="setClockMode('hour')">
+HOUR
+</button>
+
+<button
+type="button"
+id="minuteModeButton"
+onclick="setClockMode('minute')">
+MINUTE
+</button>
+
+</div>
+
+
+<div class="clock-face" id="clockFace">
+
+<div class="clock-center"></div>
+
+</div>
+
+
+<p class="clock-hint" id="clockHint">
+Choose an hour
+</p>
+
+</div>
+
+
+<p
+class="selected-time-text"
+id="selectedTimeText">
+Selected time: —
+</p>
+
+
+<button
+class="primary-btn continue-btn"
+id="timeContinue"
+onclick="showConfirmation()"
+disabled>
+
+Check our date
+
+<span>→</span>
+
+</button>
+
+</section>
+
+
+<!-- =========================================
+CONFIRMATION SCREEN
+========================================== -->
+
+<section
+class="screen"
+id="confirmationScreen">
+
+<div class="heart-icon">
+♡
+</div>
+
+<p class="small-text">
+JUST TO MAKE SURE
+</p>
+
+<h2>
+So... it's a date? ❤️
+</h2>
+
+<div class="summary-card">
+
+<div class="summary-row">
+
+<span>
+DATE TYPE
+</span>
+
+<strong id="summaryActivity"></strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>
+DAY
+</span>
+
+<strong id="summaryDate"></strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>
+TIME
+</span>
+
+<strong id="summaryTime"></strong>
+
+</div>
+
+</div>
+
+<button
+class="primary-btn"
+onclick="confirmDate()">
+
+Yes, it's a date! ❤️
+
+</button>
+
+<button
+class="text-btn"
+onclick="goBack('timeScreen')">
+
+Let me change something
+
+</button>
+
+</section>
+
+
+<!-- =========================================
+SUCCESS SCREEN
+========================================== -->
+
+<section
+class="screen"
+id="successScreen">
+
+<div class="success-heart">
+♥
+</div>
+
+<p class="small-text">
+IT'S OFFICIAL
+</p>
+
+<h1>
+DATE<br>
+LOCKED. ❤️
+</h1>
+
+<p class="description">
+I can't wait to spend this time with you.
+</p>
+
+<div class="summary-card">
+
+<div class="summary-row">
+
+<span>
+OUR DATE
+</span>
+
+<strong id="finalActivity"></strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>
+DAY
+</span>
+
+<strong id="finalDate"></strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>
+TIME
+</span>
+
+<strong id="finalTime"></strong>
+
+</div>
+
+</div>
+
+<p class="bottom-note">
+See you then, beautiful. ❤️
+</p>
+
+</section>
+
+</main>
+
+
+<!-- =========================================
+VERTICAL DATE PICKER
+========================================== -->
+
+<div
+class="calendar-overlay"
+id="calendarOverlay">
+
+<div
+class="calendar-card date-scroller-card"
+id="calendarCard">
+
+<div class="scroll-calendar-header">
+
+<button
+type="button"
+class="calendar-close"
+onclick="closeCalendar()">
+×
+</button>
+
+<div>
+
+<p class="calendar-eyebrow">
+CHOOSE A DAY
+</p>
+
+<div
+class="calendar-month"
+id="calendarMonth">
+Choose a date
+</div>
+
+</div>
+
+</div>
+
+
+<p class="wheel-instruction">
+Swipe up or down to choose
+</p>
+
+
+<div class="date-wheel-picker">
+
+<!-- YEAR -->
+
+<div class="date-wheel-column">
+
+<button
+type="button"
+class="wheel-arrow"
+onclick="moveDateWheel('year', -1)">
+↑
+</button>
+
+<div
+class="date-wheel"
+id="yearWheel">
+</div>
+
+<button
+type="button"
+class="wheel-arrow"
+onclick="moveDateWheel('year', 1)">
+↓
+</button>
+
+</div>
+
+
+<!-- MONTH -->
+
+<div class="date-wheel-column">
+
+<button
+type="button"
+class="wheel-arrow"
+onclick="moveDateWheel('month', -1)">
+↑
+</button>
+
+<div
+class="date-wheel"
+id="monthWheel">
+</div>
+
+<button
+type="button"
+class="wheel-arrow"
+onclick="moveDateWheel('month', 1)">
+↓
+</button>
+
+</div>
+
+
+<!-- DAY -->
+
+<div class="date-wheel-column">
+
+<button
+type="button"
+class="wheel-arrow"
+onclick="moveDateWheel('day', -1)">
+↑
+</button>
+
+<div
+class="date-wheel"
+id="dayWheel">
+</div>
+
+<button
+type="button"
+class="wheel-arrow"
+onclick="moveDateWheel('day', 1)">
+↓
+</button>
+
+</div>
+
+</div>
+
+
+<div class="wheel-labels">
+
+<span>YEAR</span>
+<span>MONTH</span>
+<span>DAY</span>
+
+</div>
+
+
+<div class="calendar-selected-info">
+
+<span>
+SELECTED
+</span>
+
+<strong id="calendarSelectedText">
+Choose a date
+</strong>
+
+</div>
+
+
+<button
+type="button"
+class="calendar-cancel"
+onclick="confirmCalendarDate()">
+
+Done
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Your website logic -->
+<script src="script.js"></script>
+
+</body>
+
+</html>

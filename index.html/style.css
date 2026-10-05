@@ -1,0 +1,1515 @@
+/* ========================================
+GLOBAL
+======================================== */
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--bg: #080607;
+--card: rgba(255, 255, 255, 0.055);
+--card-hover: rgba(255, 255, 255, 0.09);
+--border: rgba(255, 255, 255, 0.1);
+--text: #f8f3f3;
+--muted: #a9a1a1;
+--dim: #706a6b;
+--accent: #ff6b81;
+--accent-light: #ff9aaa;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+min-height: 100vh;
+min-height: 100svh;
+background: var(--bg);
+color: var(--text);
+font-family: "DM Sans", sans-serif;
+overflow-x: hidden;
+}
+
+/* ========================================
+BACKGROUND
+======================================== */
+
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+background:
+radial-gradient(
+circle at 15% 15%,
+rgba(255, 70, 100, 0.10),
+transparent 32%
+),
+radial-gradient(
+circle at 85% 85%,
+rgba(255, 100, 130, 0.07),
+transparent 32%
+);
+pointer-events: none;
+z-index: 0;
+}
+
+.glow {
+position: fixed;
+width: 350px;
+height: 350px;
+border-radius: 50%;
+filter: blur(110px);
+pointer-events: none;
+z-index: 0;
+}
+
+.glow-one {
+background: rgba(255, 60, 90, 0.08);
+top: -160px;
+left: -160px;
+}
+
+.glow-two {
+background: rgba(255, 100, 130, 0.06);
+bottom: -160px;
+right: -160px;
+}
+
+/* ========================================
+APP
+======================================== */
+
+.app {
+min-height: 100vh;
+min-height: 100svh;
+width: 100%;
+max-width: 900px;
+margin: auto;
+padding: 40px 30px;
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1;
+}
+
+/* ========================================
+SCREENS
+======================================== */
+
+.screen {
+width: 100%;
+max-width: 620px;
+display: none;
+position: relative;
+z-index: 2;
+animation: screenIn 0.55s ease;
+}
+
+.screen.active {
+display: block;
+}
+
+@keyframes screenIn {
+from {
+opacity: 0;
+transform: translateY(22px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* ========================================
+HEART
+======================================== */
+
+.heart-icon {
+width: 68px;
+height: 68px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--accent);
+font-size: 34px;
+margin-bottom: 35px;
+background: rgba(255, 107, 129, 0.055);
+border: 1px solid rgba(255, 107, 129, 0.28);
+box-shadow: 0 0 35px rgba(255, 107, 129, 0.08);
+}
+
+/* ========================================
+TEXT
+======================================== */
+
+.small-text {
+font-size: 11px;
+letter-spacing: 3px;
+color: var(--accent);
+font-weight: 600;
+margin-bottom: 18px;
+}
+
+h1,
+h2 {
+font-family: "Playfair Display", serif;
+font-weight: 600;
+line-height: 1.05;
+letter-spacing: -1.5px;
+}
+
+h1 {
+font-size: clamp(48px, 8vw, 76px);
+}
+
+h2 {
+font-size: clamp(40px, 7vw, 62px);
+}
+
+.description {
+max-width: 480px;
+margin-top: 25px;
+color: var(--muted);
+font-size: 16px;
+line-height: 1.75;
+}
+
+.question-text {
+margin-top: 25px;
+font-family: "Playfair Display", serif;
+font-size: clamp(38px, 7vw, 60px);
+line-height: 1.05;
+letter-spacing: -1px;
+}
+
+/* ========================================
+PRIMARY BUTTON
+======================================== */
+
+.primary-btn {
+margin-top: 35px;
+border: none;
+background: var(--text);
+color: #0b0809;
+padding: 17px 25px;
+border-radius: 100px;
+font-family: inherit;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+display: inline-flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+transition:
+transform 0.25s ease,
+padding 0.25s ease,
+box-shadow 0.25s ease;
+}
+
+.primary-btn span {
+font-size: 20px;
+transition: transform 0.25s ease;
+}
+
+.primary-btn:hover {
+transform: translateY(-3px);
+padding-right: 30px;
+box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.primary-btn:hover span {
+transform: translateX(3px);
+}
+
+.primary-btn:disabled {
+opacity: 0.3;
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+}
+
+/* ========================================
+BACK BUTTON
+======================================== */
+
+.back-btn {
+position: absolute;
+top: -10px;
+left: 0;
+width: 42px;
+height: 42px;
+border-radius: 50%;
+border: 1px solid var(--border);
+background: var(--card);
+color: var(--text);
+cursor: pointer;
+font-size: 18px;
+transition:
+background 0.2s ease,
+transform 0.2s ease;
+}
+
+.back-btn:hover {
+background: rgba(255, 255, 255, 0.1);
+transform: translateX(-2px);
+}
+
+/* ========================================
+BOTTOM NOTE
+======================================== */
+
+.bottom-note {
+color: var(--dim);
+font-size: 12px;
+margin-top: 28px;
+}
+
+/* ========================================
+MEMORY QUOTE
+======================================== */
+
+.memory-quote {
+margin-top: 35px;
+padding: 30px;
+border-left: 2px solid var(--accent);
+background: rgba(255, 107, 129, 0.04);
+color: #c7bfc0;
+font-family: "Playfair Display", serif;
+font-size: 23px;
+line-height: 1.5;
+font-style: italic;
+}
+
+.memory-quote span {
+color: var(--accent);
+font-size: 35px;
+}
+
+/* ========================================
+DATE BOX
+======================================== */
+
+.date-box {
+margin-top: 30px;
+padding: 24px 25px;
+border-radius: 20px;
+border: 1px solid var(--border);
+background: var(--card);
+transition:
+border-color 0.25s ease,
+background 0.25s ease;
+}
+
+.date-box:focus-within {
+border-color: rgba(255, 107, 129, 0.4);
+background: rgba(255, 107, 129, 0.06);
+}
+
+.date-box label {
+display: block;
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--muted);
+margin-bottom: 12px;
+}
+
+/* ========================================
+DATE INPUT
+======================================== */
+
+.custom-date-wrapper {
+display: flex;
+align-items: center;
+width: 100%;
+gap: 10px;
+}
+
+.custom-date-input {
+flex: 1;
+width: 100%;
+min-width: 0;
+background: transparent;
+border: none;
+outline: none;
+color: white;
+font-family: inherit;
+font-size: 20px;
+cursor: pointer;
+caret-color: transparent;
+}
+
+.custom-date-input::placeholder {
+color: #777071;
+opacity: 1;
+}
+
+/* ========================================
+CALENDAR BUTTON
+======================================== */
+
+.calendar-button {
+flex-shrink: 0;
+width: 38px;
+height: 38px;
+border-radius: 50%;
+border: 1px solid var(--border);
+background: rgba(255, 255, 255, 0.04);
+color: var(--muted);
+cursor: pointer;
+font-size: 16px;
+transition:
+background 0.2s ease,
+color 0.2s ease,
+transform 0.2s ease;
+}
+
+.calendar-button:hover {
+background: rgba(255, 107, 129, 0.12);
+color: var(--accent);
+transform: translateY(-1px);
+}
+
+/* ========================================
+DATE RESULT
+======================================== */
+
+.date-result {
+margin-top: 18px;
+font-size: 14px;
+min-height: 20px;
+transition: opacity 0.3s ease;
+}
+
+.date-result.correct {
+color: var(--accent-light);
+}
+
+.date-result.wrong {
+color: var(--muted);
+}
+
+/* ========================================
+ACTIVITY GRID
+======================================== */
+
+.activity-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+margin-top: 35px;
+}
+
+.activity-card {
+min-height: 140px;
+border: 1px solid var(--border);
+background: var(--card);
+color: var(--text);
+border-radius: 20px;
+cursor: pointer;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 13px;
+font-family: inherit;
+font-size: 14px;
+transition:
+transform 0.25s ease,
+border-color 0.25s ease,
+background 0.25s ease,
+box-shadow 0.25s ease;
+}
+
+.activity-card:hover {
+transform: translateY(-4px);
+border-color: rgba(255, 107, 129, 0.4);
+background: var(--card-hover);
+}
+
+.activity-card.selected {
+border-color: var(--accent);
+background: rgba(255, 107, 129, 0.12);
+box-shadow: 0 0 30px rgba(255, 107, 129, 0.08);
+transform: translateY(-3px);
+}
+
+.activity-icon {
+font-size: 30px;
+}
+
+.continue-btn {
+display: flex;
+width: 100%;
+}
+
+/* ========================================
+DATE INFORMATION
+======================================== */
+
+.date-info {
+color: var(--muted);
+margin-top: 20px;
+line-height: 1.6;
+}
+
+.range-text {
+margin-top: 15px;
+color: var(--dim);
+font-size: 12px;
+}
+
+/* ========================================
+TIME INFORMATION
+======================================== */
+
+.time-info {
+color: var(--muted);
+margin-top: 20px;
+line-height: 1.6;
+}
+
+/* ========================================
+ALARM TIME PICKER
+======================================== */
+
+.alarm-picker {
+margin-top: 30px;
+padding: 24px;
+border: 1px solid var(--border);
+border-radius: 28px;
+background: rgba(255, 255, 255, 0.045);
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+}
+
+.alarm-display {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 18px;
+flex-wrap: wrap;
+}
+
+.alarm-time {
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: "DM Sans", sans-serif;
+font-size: clamp(44px, 9vw, 64px);
+font-weight: 600;
+letter-spacing: -2px;
+min-width: 210px;
+}
+
+.clock-colon {
+color: var(--accent);
+margin: 0 4px;
+animation: clockBlink 1s infinite;
+}
+
+@keyframes clockBlink {
+0%,
+45% {
+opacity: 1;
+}
+
+50%,
+100% {
+opacity: 0.35;
+}
+}
+
+.ampm-switch {
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+
+.ampm-switch button {
+width: 50px;
+height: 34px;
+border-radius: 9px;
+border: 1px solid var(--border);
+background: rgba(255, 255, 255, 0.04);
+color: var(--muted);
+font-family: inherit;
+font-size: 11px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.2s ease;
+}
+
+.ampm-switch button.active {
+background: var(--accent);
+border-color: var(--accent);
+color: #16090c;
+}
+
+/* ========================================
+CLOCK MODE
+======================================== */
+
+.clock-mode {
+display: flex;
+justify-content: center;
+gap: 8px;
+margin-top: 20px;
+}
+
+.clock-mode button {
+border: 1px solid var(--border);
+background: rgba(255, 255, 255, 0.04);
+color: var(--muted);
+border-radius: 100px;
+padding: 8px 18px;
+font-family: inherit;
+font-size: 10px;
+letter-spacing: 1.5px;
+cursor: pointer;
+transition: 0.2s ease;
+}
+
+.clock-mode button.active {
+color: var(--accent);
+border-color: rgba(255, 107, 129, 0.4);
+background: rgba(255, 107, 129, 0.08);
+}
+
+/* ========================================
+CLOCK FACE
+======================================== */
+
+.clock-face {
+width: min(290px, 70vw);
+aspect-ratio: 1;
+margin: 25px auto 10px;
+border-radius: 50%;
+position: relative;
+background:
+radial-gradient(
+circle,
+rgba(255, 255, 255, 0.055) 0%,
+rgba(255, 255, 255, 0.025) 60%,
+rgba(255, 107, 129, 0.045) 100%
+);
+border: 1px solid rgba(255, 255, 255, 0.11);
+box-shadow:
+inset 0 0 40px rgba(255, 255, 255, 0.025),
+0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.clock-face::before {
+content: "";
+position: absolute;
+inset: 10px;
+border-radius: 50%;
+border: 1px solid rgba(255, 255, 255, 0.045);
+pointer-events: none;
+}
+
+.clock-center {
+position: absolute;
+width: 13px;
+height: 13px;
+background: var(--accent);
+border-radius: 50%;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 5;
+box-shadow: 0 0 15px rgba(255, 107, 129, 0.4);
+}
+
+.clock-hand {
+position: absolute;
+width: 3px;
+height: 92px;
+left: 50%;
+top: 50%;
+transform-origin: 50% 100%;
+transform: translate(-50%, -100%) rotate(0deg);
+background: var(--accent);
+border-radius: 10px;
+z-index: 3;
+pointer-events: none;
+box-shadow: 0 0 12px rgba(255, 107, 129, 0.3);
+}
+
+.clock-number {
+position: absolute;
+width: 42px;
+height: 42px;
+border: none;
+border-radius: 50%;
+background: transparent;
+color: var(--text);
+font-family: inherit;
+font-size: 14px;
+font-weight: 500;
+cursor: pointer;
+transform: translate(-50%, -50%);
+z-index: 4;
+transition:
+background 0.2s ease,
+color 0.2s ease,
+transform 0.2s ease;
+}
+
+.clock-number:hover {
+background: rgba(255, 107, 129, 0.12);
+color: var(--accent-light);
+transform: translate(-50%, -50%) scale(1.08);
+}
+
+.clock-number.selected {
+background: var(--accent);
+color: #16090c;
+font-weight: 700;
+box-shadow: 0 0 20px rgba(255, 107, 129, 0.25);
+}
+
+.clock-hint {
+text-align: center;
+color: var(--dim);
+font-size: 12px;
+margin-top: 10px;
+}
+
+.selected-time-text {
+text-align: center;
+margin-top: 18px;
+color: var(--accent-light);
+font-size: 14px;
+min-height: 20px;
+}
+
+/* ========================================
+SUMMARY
+======================================== */
+
+.summary-card {
+margin-top: 30px;
+padding: 10px 25px;
+border: 1px solid var(--border);
+background: var(--card);
+border-radius: 22px;
+backdrop-filter: blur(15px);
+-webkit-backdrop-filter: blur(15px);
+}
+
+.summary-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+padding: 20px 0;
+border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.summary-row:last-child {
+border-bottom: none;
+}
+
+.summary-row span {
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--muted);
+}
+
+.summary-row strong {
+font-size: 14px;
+text-align: right;
+}
+
+/* ========================================
+TEXT BUTTON
+======================================== */
+
+.text-btn {
+display: block;
+margin: 20px auto 0;
+border: none;
+background: none;
+color: var(--muted);
+cursor: pointer;
+font-family: inherit;
+font-size: 13px;
+text-decoration: underline;
+}
+
+/* ========================================
+SUCCESS
+======================================== */
+
+.success-heart {
+font-size: 60px;
+color: var(--accent);
+margin-bottom: 25px;
+animation: heartbeat 1.4s infinite;
+}
+
+@keyframes heartbeat {
+0%,
+100% {
+transform: scale(1);
+}
+
+15% {
+transform: scale(1.15);
+}
+
+30% {
+transform: scale(1);
+}
+
+45% {
+transform: scale(1.1);
+}
+}
+
+/* ========================================
+DATE SCROLLER OVERLAY
+======================================== */
+
+.calendar-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.72);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+display: none;
+align-items: center;
+justify-content: center;
+padding: 20px;
+z-index: 10000;
+}
+
+.calendar-overlay.active {
+display: flex;
+animation: calendarFade 0.2s ease;
+}
+
+@keyframes calendarFade {
+from {
+opacity: 0;
+}
+
+to {
+opacity: 1;
+}
+}
+
+/* ========================================
+DATE SCROLLER CARD
+======================================== */
+
+.calendar-card {
+width: 100%;
+max-width: 620px;
+padding: 24px;
+border: 1px solid rgba(255, 255, 255, 0.12);
+border-radius: 26px;
+background: rgba(18, 14, 16, 0.96);
+box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+backdrop-filter: blur(25px);
+-webkit-backdrop-filter: blur(25px);
+}
+
+.scroll-calendar-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 15px;
+margin-bottom: 24px;
+}
+
+.calendar-eyebrow {
+color: var(--accent);
+font-size: 9px;
+letter-spacing: 2px;
+font-weight: 600;
+margin-bottom: 5px;
+}
+
+.calendar-month {
+text-align: left;
+font-family: "Playfair Display", serif;
+font-size: 23px;
+font-weight: 600;
+color: var(--text);
+}
+
+.calendar-close {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+border: 1px solid var(--border);
+background: rgba(255, 255, 255, 0.04);
+color: var(--muted);
+font-size: 24px;
+cursor: pointer;
+transition: 0.2s ease;
+flex-shrink: 0;
+}
+
+.calendar-close:hover {
+color: var(--text);
+background: rgba(255, 107, 129, 0.1);
+}
+
+/* ========================================
+HORIZONTAL DATE SCROLLER
+======================================== */
+
+.date-scroll-wrapper {
+position: relative;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.horizontal-date-list {
+display: flex;
+align-items: stretch;
+gap: 10px;
+width: 100%;
+overflow-x: auto;
+overflow-y: hidden;
+padding: 8px 4px 15px;
+scroll-behavior: smooth;
+scroll-snap-type: x proximity;
+overscroll-behavior-x: contain;
+-webkit-overflow-scrolling: touch;
+scrollbar-width: thin;
+scrollbar-color: rgba(255, 107, 129, 0.35) transparent;
+cursor: grab;
+}
+
+.horizontal-date-list:active {
+cursor: grabbing;
+}
+
+.horizontal-date-list::-webkit-scrollbar {
+height: 5px;
+}
+
+.horizontal-date-list::-webkit-scrollbar-track {
+background: transparent;
+}
+
+.horizontal-date-list::-webkit-scrollbar-thumb {
+background: rgba(255, 107, 129, 0.35);
+border-radius: 20px;
+}
+
+.scroll-date {
+flex: 0 0 66px;
+height: 86px;
+scroll-snap-align: center;
+border-radius: 18px;
+border: 1px solid var(--border);
+background: rgba(255, 255, 255, 0.035);
+color: var(--text);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 5px;
+cursor: pointer;
+font-family: inherit;
+transition:
+transform 0.2s ease,
+background 0.2s ease,
+border-color 0.2s ease;
+}
+
+.scroll-date:hover {
+transform: translateY(-3px);
+border-color: rgba(255, 107, 129, 0.35);
+background: rgba(255, 107, 129, 0.08);
+}
+
+.scroll-date .day-name {
+color: var(--dim);
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.scroll-date .day-number {
+font-size: 22px;
+font-weight: 600;
+}
+
+.scroll-date .month-short {
+color: var(--muted);
+font-size: 10px;
+}
+
+.scroll-date.today {
+border-color: rgba(255, 107, 129, 0.45);
+}
+
+.scroll-date.today .day-name {
+color: var(--accent-light);
+}
+
+.scroll-date.selected {
+background: var(--accent);
+border-color: var(--accent);
+color: #16090c;
+box-shadow: 0 8px 25px rgba(255, 107, 129, 0.18);
+}
+
+.scroll-date.selected .day-name,
+.scroll-date.selected .month-short {
+color: rgba(22, 9, 12, 0.7);
+}
+
+.scroll-date.selected:hover {
+background: var(--accent-light);
+}
+
+.scroll-date.disabled {
+opacity: 0.22;
+cursor: not-allowed;
+}
+
+.date-scroll-arrow {
+width: 38px;
+height: 38px;
+border-radius: 50%;
+border: 1px solid var(--border);
+background: rgba(18, 14, 16, 0.95);
+color: var(--text);
+cursor: pointer;
+font-size: 24px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+z-index: 3;
+transition: 0.2s ease;
+}
+
+.date-scroll-arrow:hover {
+color: var(--accent);
+background: rgba(255, 107, 129, 0.1);
+}
+
+/* ========================================
+SELECTED DATE INFO
+======================================== */
+
+.calendar-selected-info {
+margin-top: 18px;
+padding: 15px 17px;
+border-radius: 16px;
+background: rgba(255, 107, 129, 0.055);
+border: 1px solid rgba(255, 107, 129, 0.1);
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 15px;
+}
+
+.calendar-selected-info span {
+font-size: 9px;
+letter-spacing: 1.5px;
+color: var(--muted);
+}
+
+.calendar-selected-info strong {
+font-size: 13px;
+color: var(--accent-light);
+text-align: right;
+}
+
+.calendar-cancel {
+width: 100%;
+margin-top: 18px;
+padding: 12px;
+border: none;
+background: transparent;
+color: var(--muted);
+font-family: inherit;
+font-size: 13px;
+cursor: pointer;
+}
+
+.calendar-cancel:hover {
+color: var(--text);
+}
+
+/* ========================================
+RESPONSIVE TABLET
+======================================== */
+
+@media (max-width: 700px) {
+
+.app {
+padding: 50px 24px;
+align-items: flex-start;
+padding-top: 70px;
+}
+
+.activity-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.activity-card {
+min-height: 120px;
+}
+
+.calendar-card {
+max-width: 560px;
+}
+
+.date-scroll-arrow {
+display: none;
+}
+
+.horizontal-date-list {
+padding-left: 2px;
+padding-right: 2px;
+}
+}
+
+/* ========================================
+RESPONSIVE MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+.app {
+padding:
+70px 20px 40px;
+align-items: flex-start;
+}
+
+.screen {
+max-width: 100%;
+}
+
+.heart-icon {
+width: 58px;
+height: 58px;
+font-size: 29px;
+margin-bottom: 28px;
+}
+
+h1 {
+font-size: clamp(42px, 12vw, 52px);
+}
+
+h2 {
+font-size: clamp(36px, 11vw, 46px);
+}
+
+.question-text {
+font-size: clamp(36px, 11vw, 44px);
+}
+
+.description {
+font-size: 15px;
+}
+
+.memory-quote {
+font-size: 20px;
+padding: 24px;
+}
+
+.date-box {
+padding: 20px;
+}
+
+.custom-date-input {
+font-size: 17px;
+}
+
+.summary-card {
+padding: 8px 18px;
+}
+
+.summary-row {
+padding: 17px 0;
+}
+
+.summary-row strong {
+max-width: 55%;
+overflow-wrap: anywhere;
+}
+
+.calendar-overlay {
+padding: 12px;
+}
+
+.calendar-card {
+padding: 18px;
+border-radius: 22px;
+}
+
+.calendar-month {
+font-size: 20px;
+}
+
+.scroll-date {
+flex-basis: 62px;
+height: 82px;
+}
+
+.alarm-picker {
+padding: 18px 12px;
+}
+
+.alarm-display {
+gap: 10px;
+}
+
+.alarm-time {
+min-width: 175px;
+font-size: 48px;
+}
+
+.clock-face {
+width: min(270px, 76vw);
+}
+
+.clock-hand {
+height: 82px;
+}
+}
+
+/* ========================================
+SMALL PHONES
+======================================== */
+
+@media (max-width: 380px) {
+
+.app {
+padding-left: 16px;
+padding-right: 16px;
+}
+
+h1 {
+font-size: 40px;
+}
+
+h2 {
+font-size: 35px;
+}
+
+.activity-card {
+min-height: 105px;
+border-radius: 16px;
+}
+
+.activity-icon {
+font-size: 26px;
+}
+
+.calendar-card {
+padding: 15px;
+}
+
+.scroll-date {
+flex-basis: 59px;
+height: 78px;
+}
+
+.scroll-date .day-number {
+font-size: 20px;
+}
+
+.alarm-time {
+min-width: 150px;
+font-size: 42px;
+}
+
+.clock-face {
+width: 245px;
+}
+
+.clock-hand {
+height: 73px;
+}
+
+.clock-number {
+width: 37px;
+height: 37px;
+font-size: 12px;
+}
+
+.calendar-selected-info {
+flex-direction: column;
+align-items: flex-start;
+gap: 5px;
+}
+
+.calendar-selected-info strong {
+text-align: left;
+}
+}
+
+/* ========================================
+VERY SHORT SCREENS
+======================================== */
+
+@media (max-height: 650px) and (min-width: 601px) {
+
+.app {
+padding-top: 25px;
+padding-bottom: 25px;
+}
+
+.heart-icon {
+margin-bottom: 20px;
+}
+
+.description {
+margin-top: 15px;
+}
+
+.primary-btn {
+margin-top: 25px;
+}
+}
+/* ========================================
+RELATIONSHIP COUNTER
+======================================== */
+
+.relationship-counter {
+    margin-top: 32px;
+    padding: 24px 20px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 107, 129, 0.16);
+    background: rgba(255, 107, 129, 0.045);
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+}
+
+.counter-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.counter-value {
+    font-size: clamp(13px, 3vw, 17px);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.counter-since {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--dim);
+}
+
+
+/* ========================================
+VERTICAL DATE WHEEL
+======================================== */
+
+.wheel-instruction {
+    text-align: center;
+    color: var(--dim);
+    font-size: 11px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
+
+.date-wheel-picker {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.date-wheel-column {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-wheel-column::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 48px;
+    transform: translateY(-50%);
+    border-top: 1px solid rgba(255, 107, 129, 0.3);
+    border-bottom: 1px solid rgba(255, 107, 129, 0.3);
+    background: rgba(255, 107, 129, 0.035);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.date-wheel {
+    width: 100%;
+    height: 190px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 72px 5px;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: relative;
+    z-index: 1;
+}
+
+.date-wheel::-webkit-scrollbar {
+    display: none;
+}
+
+.wheel-item {
+    width: 100%;
+    height: 46px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    border: none;
+    background: transparent;
+    color: var(--dim);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease;
+    position: relative;
+    z-index: 3;
+}
+
+.wheel-item:hover {
+    color: var(--accent-light);
+    background: rgba(255, 107, 129, 0.06);
+}
+
+.wheel-item.selected {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.wheel-arrow {
+    width: 32px;
+    height: 25px;
+    border: none;
+    background: transparent;
+    color: var(--dim);
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    z-index: 4;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.wheel-arrow:hover {
+    color: var(--accent);
+    transform: scale(1.15);
+}
+
+.wheel-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: -3px;
+}
+
+.wheel-labels span {
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+
+/* ========================================
+MOBILE DATE WHEEL
+======================================== */
+
+@media (max-width: 600px) {
+
+    .date-wheel-picker {
+        gap: 5px;
+    }
+
+    .date-wheel {
+        height: 180px;
+        padding-top: 67px;
+        padding-bottom: 67px;
+    }
+
+    .wheel-item {
+        height: 46px;
+        font-size: 14px;
+    }
+
+    .wheel-item.selected {
+        font-size: 16px;
+    }
+
+    .date-wheel-column::before {
+        height: 46px;
+    }
+
+    .relationship-counter {
+        padding: 20px 14px;
+    }
+
+    .counter-value {
+        font-size: 12px;
+        letter-spacing: 0;
+    }
+}
+
+
+@media (max-width: 380px) {
+
+    .date-wheel-picker {
+        gap: 2px;
+    }
+
+    .date-wheel {
+        height: 170px;
+        padding-top: 62px;
+        padding-bottom: 62px;
+    }
+
+    .wheel-item {
+        font-size: 13px;
+    }
+
+    .wheel-item.selected {
+        font-size: 15px;
+    }
+
+    .counter-value {
+        font-size: 10px;
+    }
+}
