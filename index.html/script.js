@@ -2613,19 +2613,19 @@ async function confirmDate() {
                     submission_message: submissionMessage
                 });
 
-        if (error) {
+   if (error) {
+    console.error("SUPABASE ERROR:", error);
 
-            console.error(
-                "Supabase error:",
-                error
-            );
+    alert(
+        "Supabase Error:\n\n" +
+        "Code: " + (error.code || "unknown") + "\n" +
+        "Message: " + (error.message || "unknown") + "\n" +
+        "Details: " + (error.details || "none") + "\n" +
+        "Hint: " + (error.hint || "none")
+    );
 
-            alert(
-                "I couldn't save the date right now. Please try again ❤️"
-            );
-
-            return;
-        }
+    return;
+}
 
         // Only show the success screen
         // after Supabase confirms the save.
